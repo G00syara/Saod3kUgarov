@@ -1,0 +1,18 @@
+﻿  Test.cpp
+C:\Users\Администратор\source\repos\Test\Test\Test.cpp(56,26): warning C4244: =: преобразование "_Ty" в "float", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\Администратор\source\repos\Test\Test\Test.cpp(63,25): warning C4244: =: преобразование "_Ty" в "float", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\Администратор\source\repos\Test\Test\Test.cpp(90,36): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\Администратор\source\repos\Test\Test\Test.cpp(130,21): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+  Test.vcxproj -> C:\Users\Администратор\source\repos\Test\Debug\Test.exe
