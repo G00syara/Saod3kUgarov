@@ -1,0 +1,116 @@
+kek
+lol
+orbidol
+zhest
+#include <vector>
+#include <string>
+#include <cmath>
+class WF
+{
+	public:
+		std::vector<std::string> prevVersion, curVersion;
+		int* pm;
+		int m, n;
+		WF() {
+
+		}
+		~WF()
+		{
+			delete[] pm;
+		}
+		void Compare(std::istream& prev, std::istream& current) {
+			char buf[512];
+			while (prev.good())
+			{
+				m++;
+				prev.getline(buf, sizeof(buf));
+				prevVersion.push_back(buf);
+			}
+			while (current.good())
+			{
+				n++;
+				current.getline(buf, sizeof(buf));
+				curVersion.push_back(buf);
+			}
+			pm = new int[(n + 1) * (m + 1)];
+			for (int i = 0; i <= m; i++)
+				pm[i] = i;
+			for (int i = 1; i <= n; i++)
+				pm[i * (m + 1)] = i;
+			int p;
+			for (int i = 1; i <= m; i++)
+				for (int j = 1; j <= n; j++)
+				{
+					p = (curVersion[j - 1] == prevVersion[i - 1]) ? 0 : 1;
+					pm[i + (m + 1) * j] = std::min(std::min(pm[(i - 1) + (m + 1) * j] + 1, pm[i + (m + 1) * (j - 1)] + 1), pm[(i - 1) + (m + 1) * (j - 1)] + p);
+				}
+
+		}
+		int Rows() const{
+			return n + 1;
+		}
+		int Columns() const {
+			return m + 1;
+		}
+		int Get(int i, int j) const {
+			return (pm[i + m * j]);
+		}
+		void Set(int i, int j, int val) {
+			pm[i + m * j] = val;
+		}
+		int Distance() const {
+			return pm[(n + 1) * (m + 1) - 1];
+		}
+		std::string Prescription() const {
+			int i = m;
+			int j = n;
+			std::string resback = "";
+			std::string res = "";
+			while ((i > 0) || (j > 0))
+			{
+				if (pm[(i - 1) + (m + 1) * (j - 1)] <= std::min(pm[(i - 1) + (m + 1) * j], pm[i + (m + 1) * (j - 1)]))
+				{
+					i--;
+					j--;
+					resback += (curVersion[j] == prevVersion[i]) ? "." : "r";
+				}
+				else if (pm[i + (m + 1) * (j - 1)] <= pm[(i - 1) + (m + 1) * j])
+				{
+					j--;
+					resback += "i";
+				}
+				else
+				{
+					i--;
+					resback += "d";
+				}
+			}
+			if (j > 0)
+				for (int k = j; k > 0; k--)
+					resback += "i";
+			if (i > 0)
+				for (int k = i; k > 0; k--)
+					resback += "d";
+			for (int i = resback.size() - 1; i >= 0; i--) {
+				res = res.append(1, resback[i]);
+			};
+
+			for (int i = 0; i < res.size(); i++) {
+				if (res[i] == '.')
+					std::cout << prevVersion[i] << std::endl;
+				else if (res[i] == 'd')
+					std::cout << ">>> " << prevVersion[i] << std::endl;
+				else if (res[i] == 'i')
+					std::cout << "<<< " << curVersion[i] << std::endl;
+				else if (res[i] == 'r')
+					std::cout << "rrr " << prevVersion[i]  << "  " << curVersion[i] << std::endl;
+			};
+			return res;
+		}
+		std::string PrevLine(int i) const {
+			return prevVersion[i];
+		}
+		std::string CurLine(int i) const {
+			return curVersion[i];
+		}
+};
