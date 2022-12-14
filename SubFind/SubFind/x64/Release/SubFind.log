@@ -1,0 +1,9 @@
+﻿  SubFind.cpp
+C:\Users\Leon\Documents\САОД 5 сем\SubFind\SubFind\SubFind.cpp(89,25): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Leon\Documents\САОД 5 сем\SubFind\SubFind\SubFind.cpp(90,25): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  Создание кода
+  1 of 230 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  SubFind.vcxproj -> C:\Users\Leon\Documents\САОД 5 сем\SubFind\x64\Release\SubFind.exe
